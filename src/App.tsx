@@ -1,6 +1,7 @@
 import { createStore } from "solid-js/store";
 import "./App.css";
 import { batch, createSignal, For } from "solid-js";
+import TodoForm from "./components/TodoForm";
 
 type Todo = {
   id: number;
@@ -30,16 +31,7 @@ function App() {
           Svelte Todo App
         </h1>
 
-        <form class="my-4" onSubmit={addTodo}>
-          <input
-            value={title()}
-            onInput={(e) => setTitle(e.currentTarget.value)}
-            type="text"
-            placeholder="Add a new todo"
-            class="p-2 border rounded mr-2"
-          />
-          <button class="bg-blue-500 text-white p-2 rounded">Add Todo</button>
-        </form>
+        <TodoForm title={title()} setTitle={setTitle} addTodo={addTodo} />
 
         <For each={todos}>
           {(todo) => (
